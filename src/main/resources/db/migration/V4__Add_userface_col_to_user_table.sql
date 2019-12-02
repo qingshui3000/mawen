@@ -1,0 +1,1 @@
+alter table user add userface_url varchar(100);

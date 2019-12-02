@@ -9,6 +9,7 @@
 [Visual Paradigm 社区版](https://www.visual-paradigm.com/cn/)  
 [XMind 思维导图](https://www.xmind.cn/)    
 [OkHttp](https://square.github.io/okhttp/)  
+[flyway]()  
 
 ###脚本
 ```sql
@@ -26,4 +27,8 @@ create table `user`(
     `gmt_modified` bigint not null comment '修改时间戳'
 );
 
+```  
+
+```bash
+mvn flyway:migration
 ```
