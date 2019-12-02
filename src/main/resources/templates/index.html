@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/mawen.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
     <title>Mawen社区</title>
@@ -18,7 +19,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">码问社区</a>
+            <a class="navbar-brand" href="/index">码问社区</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,7 +33,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/publish">提问</a></li>
                 <li class="dropdown" th:if="${session.user != null}">
-                    <img src="" th:src="${session.user.getUserfaceUrl()}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -48,5 +48,28 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div class="container-fluid main">
+    <div class="col-lg 9 col-md-9 col-sm-12">
+        <h2><span class="glyphicon glyphicon-list"></span>发现</h2>
+        <div class="media" th:each="question : ${questions}">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object img-rounded" th:src="${question.user.userfaceUrl}">
+                </a>
+            </div>
+            <div class="media-body" >
+                <h4 class="media-heading" th:text="${question.title}"></h4>
+                <span th:text="${question.description}"></span>&nbsp;
+                <span class="desc-text"><span th:text="${question.commentCount}"></span>评论 •
+                    <span th:text="${question.viewCount}"></span> 次浏览 •
+                    <span th:text="${#dates.format(question.gmtModified,'yyyy-MM-dd')}"></span></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12">
+        <h3>热门话题</h3>
+        <p>test</p>
+    </div>
+</div>
 </body>
 </html>

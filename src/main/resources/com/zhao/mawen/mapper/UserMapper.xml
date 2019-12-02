@@ -9,4 +9,8 @@
     <select id="findByToken" resultType="com.zhao.mawen.model.User">
         select * from user where token=#{token}
     </select>
+
+    <select id="findById" resultType="com.zhao.mawen.model.User">
+        select * from user where id=#{id}
+    </select>
 </mapper>
