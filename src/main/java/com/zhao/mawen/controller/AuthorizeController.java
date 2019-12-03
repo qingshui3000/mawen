@@ -43,19 +43,22 @@ public class AuthorizeController {
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         GitHubUser gitHubUser = gitHubProvider.getUser(accessToken);
         if(gitHubUser != null && gitHubUser.getId() != null){
-            User user = new User();
-            user.setName(gitHubUser.getName());
-            String token = UUID.randomUUID().toString();
-            user.setToken(token);
-            user.setAccountId(String.valueOf(gitHubUser.getId()));
-            user.setGmtCreate(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreate());
-            user.setUserfaceUrl(gitHubUser.getAvatar_url());
-            userMapper.insert(user);
-            response.addCookie(new Cookie("token",token));
-            return "redirect:index";
+            User user = userMapper.findByAccountId(String.valueOf(gitHubUser.getId()));
+            if(user == null){
+                user = new User();
+                user.setName(gitHubUser.getName());
+                String token = UUID.randomUUID().toString();
+                user.setToken(token);
+                user.setAccountId(String.valueOf(gitHubUser.getId()));
+                user.setGmtCreate(System.currentTimeMillis());
+                user.setGmtModified(user.getGmtCreate());
+                user.setUserfaceUrl(gitHubUser.getAvatar_url());
+                userMapper.insert(user);
+            }
+            response.addCookie(new Cookie("token",user.getToken()));
+            return "redirect:/";
         }else {
-            return "redirect:index";
+            return "redirect:/";
         }
     }
 }

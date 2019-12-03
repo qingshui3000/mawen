@@ -1,5 +1,7 @@
 package com.zhao.mawen.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zhao.mawen.dto.PageDTO;
 import com.zhao.mawen.dto.QuestionDTO;
 import com.zhao.mawen.mapper.QuestionMapper;
@@ -20,28 +22,61 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public PageDTO list(Integer page, Integer size){
-        if(page < 0){
-            page = 1;
-        }
+    public PageDTO list(Integer start,Integer size) {
         PageDTO pageDTO = new PageDTO();
-        Integer totalCount = questionMapper.count();
-        pageDTO.setPagenation(totalCount,page,size);
-        page = pageDTO.getPage();
-        Integer offset = size * (page - 1);
-        List<Question> questions = questionMapper.list(offset,size);
-        List<QuestionDTO> list = new ArrayList<>();
+        PageHelper.startPage(start,size);
+        List<Question> questions = questionMapper.list();
+        PageInfo<Question> pageInfo = new PageInfo<>(questions);
+        int totalItem = (int)pageInfo.getTotal();
+        if(totalItem % size == 0){
+            pageDTO.setTotal(totalItem / size);
+        }else {
+            pageDTO.setTotal(totalItem / size + 1);
+        }
+        pageDTO.setPage(pageInfo.getPageNum());
+        pageDTO.initPages();
+        System.out.println(pageDTO.getPages().toString());
+        System.out.println("total:"+pageDTO.getTotal());
+        System.out.println("page:"+pageDTO.getPage());
 
-        for (Question question : questions) {
+        List<QuestionDTO> list = new ArrayList<>();
+        for(Question question : questions){
             User user = userMapper.findById(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question,questionDTO);
             questionDTO.setUser(user);
-            System.out.println(questionDTO.toString());
             list.add(questionDTO);
         }
         pageDTO.setQuestions(list);
+        return pageDTO;
+    }
 
+    public PageDTO list(Integer start, Integer size, Integer id) {
+        PageDTO pageDTO = new PageDTO();
+        PageHelper.startPage(start,size);
+        List<Question> questions = questionMapper.listById(id);
+        PageInfo<Question> pageInfo = new PageInfo<>(questions);
+        int totalItem = (int)pageInfo.getTotal();
+        if(totalItem % size == 0){
+            pageDTO.setTotal(totalItem / size);
+        }else {
+            pageDTO.setTotal(totalItem / size + 1);
+        }
+        pageDTO.setPage(pageInfo.getPageNum());
+        pageDTO.initPages();
+        System.out.println(pageDTO.getPages().toString());
+        System.out.println("total:"+pageDTO.getTotal());
+        System.out.println("page:"+pageDTO.getPage());
+
+        List<QuestionDTO> list = new ArrayList<>();
+        for(Question question : questions){
+            User user = userMapper.findById(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(question,questionDTO);
+            questionDTO.setUser(user);
+            list.add(questionDTO);
+        }
+        pageDTO.setQuestions(list);
         return pageDTO;
     }
 }

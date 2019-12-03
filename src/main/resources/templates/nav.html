@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/index">码问社区</a>
+                <a class="navbar-brand" href="/">码问社区</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,7 +31,8 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">我的问题</a></li>
+                            <li><a href="/profile/questions">我的问题</a></li>
+                            <li><a href="#">退出登录</a></li>
                         </ul>
                     </li>
                     <li th:if="${session.user == null}">

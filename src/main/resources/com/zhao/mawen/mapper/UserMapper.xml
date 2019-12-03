@@ -13,4 +13,8 @@
     <select id="findById" resultType="com.zhao.mawen.model.User">
         select * from user where id=#{id}
     </select>
+
+    <select id="findByAccountId" resultType="com.zhao.mawen.model.User">
+        select * from user where account_id=#{param1}
+    </select>
 </mapper>
