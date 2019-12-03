@@ -1,5 +1,8 @@
 ## 码问平台 mawen
 
+###参考项目
+[community](https://github.com/codedrinker/community)
+
 ### 资料
 [前端目标网站](https://elasticsearch.cn/)  
 [BootStrap文档](https://v3.bootcss.com/)  
@@ -10,6 +13,7 @@
 [XMind 思维导图](https://www.xmind.cn/)    
 [OkHttp](https://square.github.io/okhttp/)  
 [flyway]()  
+[PageHelper 物理分页](https://github.com/pagehelper/Mybatis-PageHelper) 
 
 ###脚本
 ```sql
