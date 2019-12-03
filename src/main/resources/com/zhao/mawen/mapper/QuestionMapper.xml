@@ -7,6 +7,10 @@
     </insert>
 
     <select id="list" resultType="com.zhao.mawen.model.Question">
-        select * from question
+        select * from question limit #{offset},#{size}
+    </select>
+
+    <select id="count" resultType="Integer">
+        select count(1) from question
     </select>
 </mapper>

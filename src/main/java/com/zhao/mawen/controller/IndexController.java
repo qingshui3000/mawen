@@ -1,5 +1,6 @@
 package com.zhao.mawen.controller;
 
+import com.zhao.mawen.dto.PageDTO;
 import com.zhao.mawen.dto.QuestionDTO;
 import com.zhao.mawen.mapper.QuestionMapper;
 import com.zhao.mawen.mapper.UserMapper;
@@ -25,7 +26,9 @@ public class IndexController {
     private QuestionService questionService;
     @GetMapping("/index")
     public String hello(HttpServletRequest request,
-                        Model model) {
+                        Model model,
+                        @RequestParam(name = "page",defaultValue = "1")Integer page,
+                        @RequestParam(name = "size",defaultValue = "5")Integer size) {
         Cookie[] cookies = request.getCookies();
         if(cookies != null && cookies.length != 0){
             for(Cookie cookie:cookies){
@@ -39,8 +42,8 @@ public class IndexController {
                 }
             }
         }
-        List<QuestionDTO> list = questionService.list();
-        model.addAttribute("questions",list);
+        PageDTO pagination = questionService.list(page,size);
+        model.addAttribute("pagination",pagination);
         return "index";
     }
 }

@@ -1,5 +1,6 @@
 package com.zhao.mawen.service;
 
+import com.zhao.mawen.dto.PageDTO;
 import com.zhao.mawen.dto.QuestionDTO;
 import com.zhao.mawen.mapper.QuestionMapper;
 import com.zhao.mawen.mapper.UserMapper;
@@ -19,9 +20,18 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public List<QuestionDTO> list(){
-        List<Question> questions = questionMapper.list();
+    public PageDTO list(Integer page, Integer size){
+        if(page < 0){
+            page = 1;
+        }
+        PageDTO pageDTO = new PageDTO();
+        Integer totalCount = questionMapper.count();
+        pageDTO.setPagenation(totalCount,page,size);
+        page = pageDTO.getPage();
+        Integer offset = size * (page - 1);
+        List<Question> questions = questionMapper.list(offset,size);
         List<QuestionDTO> list = new ArrayList<>();
+
         for (Question question : questions) {
             User user = userMapper.findById(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
@@ -30,6 +40,8 @@ public class QuestionService {
             System.out.println(questionDTO.toString());
             list.add(questionDTO);
         }
-        return list;
+        pageDTO.setQuestions(list);
+
+        return pageDTO;
     }
 }
