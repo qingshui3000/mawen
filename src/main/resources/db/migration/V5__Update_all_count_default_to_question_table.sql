@@ -1,0 +1,3 @@
+ALTER TABLE question ALTER COLUMN view_count SET DEFAULT 0;
+ALTER TABLE question ALTER COLUMN like_count SET DEFAULT 0;
+ALTER TABLE question ALTER COLUMN comment_count SET DEFAULT 0;

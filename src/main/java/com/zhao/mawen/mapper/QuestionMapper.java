@@ -13,4 +13,6 @@ public interface QuestionMapper {
     Integer count();
 
     List<Question> listById(@Param("creator") Integer creator);
+
+    Question findById(Integer id);
 }

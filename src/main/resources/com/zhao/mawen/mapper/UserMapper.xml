@@ -17,4 +17,10 @@
     <select id="findByAccountId" resultType="com.zhao.mawen.model.User">
         select * from user where account_id=#{param1}
     </select>
+
+    <update id="update" parameterType="com.zhao.mawen.model.User">
+        update user set gmt_modified=#{gmtModified},userface_url=#{userfaceUrl},
+            name=#{name},token=#{token}
+        where id=#{id}
+    </update>
 </mapper>

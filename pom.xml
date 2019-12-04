@@ -8,6 +8,7 @@
         <version>2.2.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <packaging>war</packaging>
     <groupId>com.zhao</groupId>
     <artifactId>mawen</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -19,6 +20,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -97,7 +103,7 @@
                 <configuration>
                     <url>jdbc:mysql://localhost:3306/mawen?serverTimezone=Hongkong</url>
                     <user>root</user>
-                    <password>192837</password>
+                    <password>Zhao..6582</password>
                 </configuration>
                 <dependencies>
                     <dependency>

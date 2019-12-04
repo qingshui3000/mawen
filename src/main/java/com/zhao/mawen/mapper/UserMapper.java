@@ -10,4 +10,6 @@ public interface UserMapper {
     User findById(Integer creator);
 
     User findByAccountId(String accountId);
+
+    void update(User user);
 }
