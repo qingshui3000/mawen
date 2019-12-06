@@ -42,6 +42,7 @@ public class AuthorizeController {
         accessTokenDTO.setCode(code);
         accessTokenDTO.setRedirect_uri(uri);
         accessTokenDTO.setState(state);
+
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         GitHubUser gitHubUser = gitHubProvider.getUser(accessToken);
         if(gitHubUser != null && gitHubUser.getId() != null){
