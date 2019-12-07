@@ -91,4 +91,10 @@ public class QuestionService {
             }
         }
     }
+
+    public void inView(String id) {
+        Question question = questionMapper.findById(Integer.parseInt(id));
+        question.setViewCount(question.getViewCount() + 1);
+        questionMapper.update(question);
+    }
 }

@@ -19,8 +19,30 @@
     </select>
 
     <update id="update" parameterType="com.zhao.mawen.model.Question">
-        update question set
-        gmt_modified = #{gmtModified},title = #{title},description=#{description},tag=#{tag}
-        where id=#{id};
+        update question
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=BIGINT},
+            </if>
+            <if test="commentCount != null">
+                comment_count = #{commentCount,jdbcType=INTEGER},
+            </if>
+            <if test="viewCount != null">
+                view_count = view_count + 1,
+            </if>
+            <if test="likeCount != null">
+                like_count = #{likeCount,jdbcType=INTEGER},
+            </if>
+            <if test="tag != null">
+                tag = #{tag,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>
