@@ -3,7 +3,6 @@ package com.zhao.mawen.advice;
 import com.alibaba.fastjson.JSON;
 import com.zhao.mawen.dto.ResultDTO;
 import com.zhao.mawen.exception.ExceptionErrorCode;
-import com.zhao.mawen.exception.IExceptionErrorCode;
 import com.zhao.mawen.exception.MawenException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

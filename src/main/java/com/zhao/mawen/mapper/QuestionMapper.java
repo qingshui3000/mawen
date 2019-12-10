@@ -14,7 +14,9 @@ public interface QuestionMapper {
 
     List<Question> listById(@Param("creator") Integer creator);
 
-    Question findById(Integer id);
+    Question findById(Long id);
 
     int update(Question question);
+
+    void incCommentCount(Question question);
 }

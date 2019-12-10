@@ -1,10 +1,29 @@
 package com.zhao.mawen.dto;
 
+import com.zhao.mawen.model.User;
 import lombok.Data;
 
+/**
+ * comment
+ * @author 
+ */
 @Data
 public class CommentDTO {
-    private Integer paraentId;
-    private String content;
+    private Long id;
+
+    private Long parentId;
+
     private Integer type;
+
+    private Integer commentor;
+
+    private Long gmtCreate;
+
+    private Long gmtModified;
+
+    private Integer likeCount;
+
+    private String content;
+
+    private User user;
 }

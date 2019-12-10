@@ -1,21 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhao.mawen.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.zhao.mawen.model.User">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+        <result column="token" jdbcType="CHAR" property="token" />
+        <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+        <result column="bio" jdbcType="VARCHAR" property="bio" />
+        <result column="userface_url" jdbcType="VARCHAR" property="userfaceUrl" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, `name`, account_id, token, gmt_create, gmt_modified, bio, userface_url
+    </sql>
     <insert id="insert" parameterType="com.zhao.mawen.model.User">
         insert into user(name,account_id,token,gmt_create,gmt_modified,userface_url)
         values(#{name},#{accountId},#{token},#{gmtCreate},#{gmtModified},#{userfaceUrl})
     </insert>
 
-    <select id="findByToken" resultType="com.zhao.mawen.model.User">
-        select * from user where token=#{token}
+    <select id="findByToken" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where token=#{token}
     </select>
 
-    <select id="findById" resultType="com.zhao.mawen.model.User">
-        select * from user where id=#{id}
+    <select id="findById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user where id=#{id}
     </select>
 
-    <select id="findByAccountId" resultType="com.zhao.mawen.model.User">
-        select * from user where account_id=#{param1}
+    <select id="findByIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findByAccountId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user where account_id=#{param1}
     </select>
 
     <update id="update" parameterType="com.zhao.mawen.model.User">

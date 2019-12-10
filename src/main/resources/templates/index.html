@@ -5,10 +5,17 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="css/mawen.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="/js/jquery.min.js" type="application/javascript"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
     <title>Mawen社区</title>
 </head>
+<script type="application/javascript">
+    var closable = window.localStorage.getItem("closable");
+    if(closable){
+        window.close();
+        window.localStorage.removeItem("closable");
+    }
+</script>
 <body>
 <div th:insert="~{nav :: nav}"></div>
 <div class="container-fluid main">
@@ -22,7 +29,7 @@
                     </a>
                 </div>
                 <div class="media-body" >
-                    <a th:href="@{'/question/'+${question.id}}">
+                    <a target="_blank" th:href="@{'/question/'+${question.id}}">
                         <h4 class="media-heading" th:text="${question.title}"></h4>
                     </a>
                     <span th:text="${question.description}"></span>&nbsp;

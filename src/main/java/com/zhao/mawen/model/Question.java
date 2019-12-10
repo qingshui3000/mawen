@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @Data
 public class Question{
-    private Integer id;
+    private Long id;
 
     /**
      * 标题

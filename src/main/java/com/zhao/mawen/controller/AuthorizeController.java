@@ -2,7 +2,6 @@ package com.zhao.mawen.controller;
 
 import com.zhao.mawen.dto.AccessTokenDTO;
 import com.zhao.mawen.dto.GitHubUser;
-import com.zhao.mawen.mapper.UserMapper;
 import com.zhao.mawen.model.User;
 import com.zhao.mawen.provider.GitHubProvider;
 import com.zhao.mawen.service.UserService;

@@ -28,7 +28,7 @@ public class ResultDTO {
     public static ResultDTO okOf() {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCode(200);
-        resultDTO.setMessage("登陆成功");
+        resultDTO.setMessage("请求成功");
         return  resultDTO;
     }
 }

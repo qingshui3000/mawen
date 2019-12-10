@@ -45,4 +45,10 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <update id="incCommentCount" parameterType="com.zhao.mawen.model.Question">
+        update question
+        set comment_count = comment_count + 1,gmt_modified=#{gmtModified}
+        where id=#{id};
+    </update>
 </mapper>

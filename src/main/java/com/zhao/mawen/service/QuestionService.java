@@ -65,7 +65,7 @@ public class QuestionService {
         return pageDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.findById(id);
         if(question == null){
             throw new MawenException(ExceptionErrorCode.QUESTION_NOT_FOUND);
@@ -93,7 +93,7 @@ public class QuestionService {
     }
 
     public void inView(String id) {
-        Question question = questionMapper.findById(Integer.parseInt(id));
+        Question question = questionMapper.findById(Long.valueOf(id));
         question.setViewCount(question.getViewCount() + 1);
         questionMapper.update(question);
     }

@@ -3,29 +3,29 @@
 <mapper namespace="com.zhao.mawen.mapper.CommentMapper">
   <resultMap id="BaseResultMap" type="com.zhao.mawen.model.Comment">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="commentor" jdbcType="INTEGER" property="commentor" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zhao.mawen.model.Comment">
-    <result column="content" jdbcType="VARBINARY" property="content" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, parent_id, `type`, commentor, gmt_create, gmt_modified, like_count
+    id, parent_id, `type`, commentor, gmt_create, gmt_modified, like_count,content
   </sql>
-  <sql id="Blob_Column_List">
-    content
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from comment
     where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="queryByQuestionId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from comment
+    where parent_id=#{id,jdbcType=BIGINT} and type=1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from comment
@@ -35,7 +35,7 @@
     insert into comment (id, parent_id, `type`, 
       commentor, gmt_create, gmt_modified, 
       like_count, content)
-    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
       #{commentor,jdbcType=INTEGER}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
       #{likeCount,jdbcType=INTEGER}, #{content,jdbcType=VARBINARY})
   </insert>
@@ -72,7 +72,7 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="parentId != null">
-        #{parentId,jdbcType=INTEGER},
+        #{parentId,jdbcType=BIGINT},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
@@ -98,7 +98,7 @@
     update comment
     <set>
       <if test="parentId != null">
-        parent_id = #{parentId,jdbcType=INTEGER},
+        parent_id = #{parentId,jdbcType=BIGINT},
       </if>
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
@@ -123,7 +123,7 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zhao.mawen.model.Comment">
     update comment
-    set parent_id = #{parentId,jdbcType=INTEGER},
+    set parent_id = #{parentId,jdbcType=BIGINT},
       `type` = #{type,jdbcType=INTEGER},
       commentor = #{commentor,jdbcType=INTEGER},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
@@ -134,7 +134,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zhao.mawen.model.Comment">
     update comment
-    set parent_id = #{parentId,jdbcType=INTEGER},
+    set parent_id = #{parentId,jdbcType=BIGINT},
       `type` = #{type,jdbcType=INTEGER},
       commentor = #{commentor,jdbcType=INTEGER},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},

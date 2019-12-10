@@ -1,9 +1,9 @@
 package com.zhao.mawen.mapper;
 
 import com.zhao.mawen.model.Comment;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.List;
+
 public interface CommentMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -18,4 +18,6 @@ public interface CommentMapper {
     int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> queryByQuestionId(Long id);
 }
