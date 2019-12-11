@@ -1,6 +1,5 @@
 package com.zhao.mawen.service;
 
-import com.zhao.mawen.dto.CommentCreateDTO;
 import com.zhao.mawen.dto.CommentDTO;
 import com.zhao.mawen.enums.CommentTypeEnum;
 import com.zhao.mawen.exception.ExceptionErrorCode;
@@ -21,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class CommentService {
@@ -58,9 +56,14 @@ public class CommentService {
         }
     }
 
-    public List<CommentDTO> listByQuestionId(Long id) {
+    public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum type) {
+        List<Comment> comments;
         //获取评论集合
-        List<Comment> comments = commentMapper.queryByQuestionId(id);
+        if(type.getType() == 1){
+            comments = commentMapper.queryByQuestionId(id,type.getType());
+        }else{
+            comments = commentMapper.queryByCommondId(id,type.getType());
+        }
         if(comments.size() == 0){
             return new ArrayList<>();
         }

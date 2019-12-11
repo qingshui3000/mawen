@@ -1,6 +1,8 @@
 package com.zhao.mawen.mapper;
 
+import com.zhao.mawen.enums.CommentTypeEnum;
 import com.zhao.mawen.model.Comment;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +21,7 @@ public interface CommentMapper {
 
     int updateByPrimaryKey(Comment record);
 
-    List<Comment> queryByQuestionId(Long id);
+    List<Comment> queryByQuestionId(@Param("questionId") Long id,@Param("type") Integer type);
+
+    List<Comment> queryByCommondId(@Param("commentId") Long id,@Param("type") Integer type);
 }

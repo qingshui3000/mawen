@@ -1,8 +1,8 @@
 package com.zhao.mawen.controller;
 
-import com.zhao.mawen.dto.CommentCreateDTO;
 import com.zhao.mawen.dto.CommentDTO;
 import com.zhao.mawen.dto.QuestionDTO;
+import com.zhao.mawen.enums.CommentTypeEnum;
 import com.zhao.mawen.service.CommentService;
 import com.zhao.mawen.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class QuestionController {
                          Model model){
         questionService.inView(id);
         QuestionDTO questionDTO = questionService.getById(Long.valueOf(id));
-        List<CommentDTO> list = commentService.listByQuestionId(Long.valueOf(id));
+        List<CommentDTO> list = commentService.listByTargetId(Long.valueOf(id), CommentTypeEnum.QUESTION);
         model.addAttribute("question",questionDTO);
         model.addAttribute("comments",list);
 

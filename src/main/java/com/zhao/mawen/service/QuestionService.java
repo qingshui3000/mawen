@@ -81,6 +81,9 @@ public class QuestionService {
         Question dbQuestion = questionMapper.findById(question.getId());
         if(dbQuestion == null){
             //insert
+            question.setCommentCount(0);
+            question.setLikeCount(0);
+            question.setViewCount(0);
             questionMapper.insert(question);
         }else{
             //update

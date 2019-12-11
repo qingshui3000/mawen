@@ -36,6 +36,12 @@ body{
     margin:10px;
 }
 
+.comments{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
 .comment_sp{
     margin-top: 0px;
 }
@@ -51,6 +57,17 @@ body{
     cursor: pointer;
 }
 
+.menu .active{
+    color:#499ef3;
+}
+
 .menu .icon:hover{
     color: #499ef3;
+}
+.subComment{
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 15px;
 }

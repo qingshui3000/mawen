@@ -1,6 +1,7 @@
 package com.zhao.mawen.controller;
 
 import com.zhao.mawen.dto.QuestionDTO;
+import com.zhao.mawen.exception.ExceptionErrorCode;
 import com.zhao.mawen.mapper.QuestionMapper;
 import com.zhao.mawen.model.Question;
 import com.zhao.mawen.model.User;
@@ -55,7 +56,7 @@ public class PublishController {
         model.addAttribute("tag",tag);
         User user = (User)request.getSession().getAttribute("user");
         if (user == null){
-            model.addAttribute("error","用户未登录");
+            model.addAttribute("error", ExceptionErrorCode.NO_LOGIN);
             return "publish";
         }
         if(title == null || "".equals(title)){

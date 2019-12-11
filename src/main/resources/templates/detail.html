@@ -8,6 +8,7 @@
     <script src="/js/jquery.min.js" type="application/javascript"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/mawen.js" type="application/javascript"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
     <title th:text="${question.title}"></title>
 </head>
 <body>
@@ -20,7 +21,7 @@
             <h2><span th:text="${question.title}"></span></h2>
             <span class="desc-text">
                 作者：<span th:text="${question.user.name}"></span> |
-                发布时间：<span th:text="${#dates.format(question.gmtModified,'yyyy-MM-dd')}"></span> |
+                发布时间：<span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span> |
                 阅读数：<span th:text="${question.viewCount}"></span>
             </span>
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -33,12 +34,15 @@
 <!--            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
         </div>
         <!--评论区-->
-        <h4>
-            <span th:text="${question.commentCount}"></span>个回复
-        </h4>
-        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment_sp">
+        <div th:if="${question.commentCount > 0}" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h4>
+                <span th:text="${question.commentCount}"></span>个回复
+            </h4>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment_sp">
+        </div>
+
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="media" th:if="${comments != null}" th:each="comment : ${comments}">
+            <div class="media comments" th:if="${comments != null}" th:each="comment : ${comments}">
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded"
@@ -52,14 +56,28 @@
                     <div>
                         <span th:text="${comment.content}"></span>
                     </div>
-                    <div class="menu">
+                    <div class="menu panel">
                         <span class="glyphicon glyphicon-thumbs-up icon"></span>
-                        <span class="glyphicon glyphicon-comment icon"></span>
-                        <span  class="pull-right" th:text="${#dates.format(comment.gmtModified,'yyyy-MM-dd')}"></span> |
+                        <span class="glyphicon glyphicon-comment icon" th:data-id="${comment.id}"
+                                onclick="collapseComments(this)"></span>
+                        <span  class="pull-right" th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse subComment"
+                         th:id="${'subComment-'+comment.id}">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" th:id="${'input-'+comment.id}"
+                                   placeholder="友善的回复是交流的开始哦~"/>
+                            <button onclick="comment2(this)" type="button" th:data-id="${comment.id}"
+                                    class="btn btn-success btn-comment">回复</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h4>提交回复</h4>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment_sp">
         </div>
         <!--评论框-->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
@@ -77,7 +95,7 @@
             </div>
             <input type="hidden" id="question_id" th:value="${question.id}">
             <textarea id="comment_content" class="form-control comment" rows="6"></textarea>
-            <button onclick="post()" type="button" class="btn btn-success btn-comment">回复</button>
+            <button onclick="comment1()" type="button" class="btn btn-success btn-comment">回复</button>
         </div>
     </div>
     <!--right-->

@@ -21,12 +21,21 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
 
-  <select id="queryByQuestionId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="queryByQuestionId" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from comment
-    where parent_id=#{id,jdbcType=BIGINT} and type=1
+    where parent_id=#{questionId,jdbcType=BIGINT} and type=#{type,jdbcType=INTEGER}
+    order by gmt_modified desc
   </select>
+  <select id="queryByCommondId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from comment
+    where parent_id=#{commentId,jdbcType=BIGINT} and type=#{type,jdbcType=INTEGER}
+    order by gmt_modified desc
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from comment
     where id = #{id,jdbcType=BIGINT}
