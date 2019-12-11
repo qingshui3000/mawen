@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionService {
@@ -99,5 +101,20 @@ public class QuestionService {
         Question question = questionMapper.findById(Long.valueOf(id));
         question.setViewCount(question.getViewCount() + 1);
         questionMapper.update(question);
+    }
+
+    public List<QuestionDTO> selectRelated(QuestionDTO queryDTO){
+        Question question = new Question();
+        question.setId(queryDTO.getId());
+        String regexTag = queryDTO.getTag().replaceAll(",","|");
+        System.out.println("tags:"+regexTag);
+        question.setTag(regexTag);
+        List<Question> questions = questionMapper.selectRelated(question);
+        List<QuestionDTO> questionDTOS = questions.stream().map(q->{
+           QuestionDTO questionDTO = new QuestionDTO();
+           BeanUtils.copyProperties(q,questionDTO);
+           return questionDTO;
+        }).collect(Collectors.toList());
+        return questionDTOS;
     }
 }

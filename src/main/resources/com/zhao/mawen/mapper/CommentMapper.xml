@@ -9,10 +9,11 @@
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, parent_id, `type`, commentor, gmt_create, gmt_modified, like_count,content
+    id, parent_id, `type`, commentor, gmt_create, gmt_modified, like_count,comment_count,content
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -43,10 +44,10 @@
   <insert id="insert" parameterType="com.zhao.mawen.model.Comment">
     insert into comment (id, parent_id, `type`, 
       commentor, gmt_create, gmt_modified, 
-      like_count, content)
+      like_count, comment_count,content)
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
       #{commentor,jdbcType=INTEGER}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
-      #{likeCount,jdbcType=INTEGER}, #{content,jdbcType=VARBINARY})
+      #{likeCount,jdbcType=INTEGER},#{commentCount,jdbcType=INTEGER}, #{content,jdbcType=VARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.zhao.mawen.model.Comment">
     insert into comment
@@ -103,6 +104,11 @@
       </if>
     </trim>
   </insert>
+  <update id="incCommentCount" parameterType="com.zhao.mawen.model.Comment">
+    update comment set
+    comment_count=comment_count+1,gmt_modified=#{gmtModified}
+    where id=#{id}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.zhao.mawen.model.Comment">
     update comment
     <set>

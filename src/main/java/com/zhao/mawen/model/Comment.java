@@ -24,5 +24,7 @@ public class Comment {
 
     private Integer likeCount;
 
+    private Integer commentCount;
+
     private String content;
 }

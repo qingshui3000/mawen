@@ -24,4 +24,6 @@ public interface CommentMapper {
     List<Comment> queryByQuestionId(@Param("questionId") Long id,@Param("type") Integer type);
 
     List<Comment> queryByCommondId(@Param("commentId") Long id,@Param("type") Integer type);
+
+    void incCommentCount(Comment dbComment);
 }

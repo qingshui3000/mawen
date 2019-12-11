@@ -25,10 +25,12 @@ public class QuestionController {
                          Model model){
         questionService.inView(id);
         QuestionDTO questionDTO = questionService.getById(Long.valueOf(id));
-        List<CommentDTO> list = commentService.listByTargetId(Long.valueOf(id), CommentTypeEnum.QUESTION);
+        List<QuestionDTO> relatedQuestions = questionService.selectRelated(questionDTO);
+        List<CommentDTO> comments = commentService.listByTargetId(Long.valueOf(id), CommentTypeEnum.QUESTION);
         model.addAttribute("question",questionDTO);
-        model.addAttribute("comments",list);
-
+        model.addAttribute("comments",comments);
+        model.addAttribute("relatedQuestions",relatedQuestions);
+        System.out.println(relatedQuestions.toString());
         return "detail";
     }
 }

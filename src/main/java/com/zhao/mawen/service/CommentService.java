@@ -43,13 +43,21 @@ public class CommentService {
             if(dbComment == null){
                 throw new MawenException(ExceptionErrorCode.COMMENT_NOT_FOUND);
             }
+            Question question = questionMapper.findById(dbComment.getParentId());
+            if(question == null){
+                throw new MawenException(ExceptionErrorCode.QUESTION_NOT_FOUND);
+            }
             commentMapper.insert(comment);
+            //增加二级回复的数量
+            dbComment.setGmtModified(System.currentTimeMillis());
+            commentMapper.incCommentCount(dbComment);
         }else{
             //回复问题
             Question question = questionMapper.findById(comment.getParentId());
             if(question == null){
                 throw new MawenException(ExceptionErrorCode.QUESTION_NOT_FOUND);
             }
+            comment.setCommentCount(0);
             commentMapper.insert(comment);
             question.setGmtModified(System.currentTimeMillis());
             questionMapper.incCommentCount(question);

@@ -71,3 +71,27 @@ body{
     padding-top: 15px;
     margin-bottom: 15px;
 }
+
+.question-tag{
+    margin-right: 5px;
+}
+
+.tags{
+    text-decoration-line: none;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    line-height: 16px;
+    padding: 2px 5px;
+    background-color: #99cfff;
+    font-size: 12px;
+    color: #fff !important;
+    border-radius: 4px;
+    margin: 4px;
+}
+
+.tags:hover{
+    background-color: #339dff;
+    color: #fff !important;
+    text-decoration-line: none;
+}

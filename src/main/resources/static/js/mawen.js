@@ -61,7 +61,7 @@ function collapseComments(e) {
                         "class": "media-left"
                     }).append($("<img/>", {
                         "class": "media-object img-rounded",
-                        "src": subComment.user.avatarUrl
+                        "src": subComment.user.userfaceUrl
                     }));
 
                     var mediaBodyElement = $("<div/>", {
@@ -75,7 +75,7 @@ function collapseComments(e) {
                         "class": "menu"
                     }).append($("<span/>", {
                         "class": "pull-right",
-                        "html": moment(subComment.gmtCreate).format('YYYY-MM-DD HH-mm-ss')
+                        "html": moment(subComment.gmtCreate).format('YYYY-MM-DD HH:mm:ss')
                     })));
 
                     var mediaElement = $("<div/>", {
