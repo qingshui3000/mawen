@@ -95,3 +95,8 @@ body{
     color: #fff !important;
     text-decoration-line: none;
 }
+
+.publish-tags-tab{
+    display: none;
+    margin-top: 10px;
+}

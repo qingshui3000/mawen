@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/mawen.css">
     <script src="/js/jquery.min.js" type="application/javascript"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/mawen.js" type="application/javascript"></script>
     <title>发起 - Mawen社区</title>
 </head>
 <body>
@@ -18,15 +19,42 @@
             <input type="hidden" th:value="${id}" name="id">
             <div class="form-group">
                 <label for="title">问题标题（简单扼要）:</label>
-                <input type="text" th:value="${title}" class="form-control" id="title" name="title" placeholder="问题标题...">
+                <input type="text" th:value="${title}" class="form-control"
+                       id="title" name="title" placeholder="问题标题..." autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="description">问题描述（必填，请参照右侧提示）:</label>
-                <textarea class="form-control" th:utext="${description}" id="description" name="description" cols="30" rows="10"></textarea>
+                <textarea class="form-control" th:utext="${description}"
+                          id="description" name="description" cols="30" rows="10" autocomplete="off"></textarea>
             </div>
             <div class="form-group">
                 <label for="tag">添加标签（多个标签请使用英文','隔开）:</label>
-                <input class="form-control" th:value="${tag}" name="tag" id="tag" placeholder="添加标签，以，号分隔"/>
+                <input class="form-control" th:value="${tag}" name="tag" onclick="showSelectTags()"
+                       id="tag" placeholder="添加标签，以，号分隔" autocomplete="off"/>
+                <div id="selectTags" class="publish-tags-tab">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li th:each="selectCategory,selectCategoryStat : ${tags}"
+                            role="presentation" th:class="${selectCategoryStat.first ? 'active' : ''}">
+                            <a th:href="${'#'+ selectCategory.categoryName}"  aria-controls="home"
+                               role="tab" data-toggle="tab" th:text="${selectCategory.categoryName}"></a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" th:each="selectCategory,selectCategoryStat : ${tags}"
+                             th:class="${selectCategoryStat.first ? 'tab-pane active' : 'tab-pane'}" th:id="${selectCategory.categoryName}">
+                            <span>
+                                <span th:each="selectTag : ${selectCategory.tags}" class="question-tag">
+                                    <span class="tags" onclick="selectTags(this)"
+                                          th:text="${selectTag}" th:data-tag="${selectTag}"></span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
             <div class="container-fluid">
                 <div th:if="${error} != null">
