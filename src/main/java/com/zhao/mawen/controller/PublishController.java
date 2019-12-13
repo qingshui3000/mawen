@@ -38,7 +38,7 @@ public class PublishController {
         }else{
             throw new MawenException(ExceptionErrorCode.NO_AUTH);
         }
-        return "/publish";
+        return "publish";
     }
 
     @GetMapping("/publish")
