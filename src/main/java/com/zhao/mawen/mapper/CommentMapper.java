@@ -1,6 +1,5 @@
 package com.zhao.mawen.mapper;
 
-import com.zhao.mawen.enums.CommentTypeEnum;
 import com.zhao.mawen.model.Comment;
 import org.apache.ibatis.annotations.Param;
 

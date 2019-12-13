@@ -2,8 +2,6 @@ package com.zhao.mawen.model;
 
 import lombok.Data;
 
-import java.io.Serializable;
-
 /**
  * question
  * @author 
