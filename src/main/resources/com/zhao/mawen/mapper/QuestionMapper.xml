@@ -22,6 +22,11 @@
         select * from question
         where id != #{id} and tag regexp #{tag}
     </select>
+
+    <select id="selectHot" resultType="com.zhao.mawen.model.Question">
+        select * from question where comment_count > 0
+        order by comment_count desc limit 10;
+    </select>
     <update id="update" parameterType="com.zhao.mawen.model.Question">
         update question
         <set>

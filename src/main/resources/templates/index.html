@@ -70,7 +70,9 @@
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12">
         <h3>热门话题</h3>
-        <p>test</p>
+        <div th:each="hotQuestion : ${hotQuestions}">
+            <a th:href="@{'/question/'+${hotQuestion.id}}" th:text="${hotQuestion.title}"></a>
+        </div>
     </div>
 </div>
 </body>

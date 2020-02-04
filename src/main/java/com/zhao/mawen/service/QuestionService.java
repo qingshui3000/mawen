@@ -116,4 +116,17 @@ public class QuestionService {
         }).collect(Collectors.toList());
         return questionDTOS;
     }
+
+    public List<QuestionDTO> selectHot() {
+        List<Question> questions = questionMapper.selectHot();
+        if(questions.size() == 0){
+            return null;
+        }
+        List<QuestionDTO> hotQuestions = questions.stream().map(q->{
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(q,questionDTO);
+            return questionDTO;
+        }).collect(Collectors.toList());
+        return hotQuestions;
+    }
 }

@@ -21,4 +21,6 @@ public interface QuestionMapper {
     void incCommentCount(Question question);
 
     List<Question> selectRelated(Question question);
+
+    List<Question> selectHot();
 }

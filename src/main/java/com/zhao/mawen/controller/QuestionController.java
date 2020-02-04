@@ -33,4 +33,5 @@ public class QuestionController {
         System.out.println(relatedQuestions.toString());
         return "detail";
     }
+
 }
