@@ -10,11 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 80015
 File Encoding         : 65001
 
-Date: 2019-12-14 10:38:55
+Date: 2020-02-04 20:44:43
 */
-DROP DATABASE IF EXISTS `mawen`;
-CREATE DATABASE `mawen`;
-USE `mawen`;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -32,7 +30,7 @@ CREATE TABLE `comment` (
   `content` text NOT NULL,
   `comment_count` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Table structure for flyway_schema_history
