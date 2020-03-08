@@ -55,6 +55,7 @@ public class AuthorizeController {
             response.addCookie(new Cookie("token",user.getToken()));
             return "redirect:/";
         }else {
+            System.out.println("user null!!");
             return "redirect:/";
         }
     }
