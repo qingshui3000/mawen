@@ -54,8 +54,11 @@ public class AuthorizeController {
             userService.createOrUpdate(user);
             response.addCookie(new Cookie("token",user.getToken()));
             return "redirect:/";
-        }else {
+        }else if(gitHubUser != null){
             System.out.println("user null!!");
+            return "redirect:/";
+        }else{
+            System.out.println("id null!!");
             return "redirect:/";
         }
     }
