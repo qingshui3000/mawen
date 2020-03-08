@@ -54,13 +54,17 @@ public class AuthorizeController {
             userService.createOrUpdate(user);
             response.addCookie(new Cookie("token",user.getToken()));
             return "redirect:/";
-        }else if(gitHubUser != null){
+        }
+        if(gitHubUser == null){
             System.out.println("user null!!");
             return "redirect:/";
-        }else{
+        }
+        if(gitHubUser.getId() == null){
             System.out.println("id null!!");
             return "redirect:/";
         }
+        System.out.println("不知道啥null");
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
