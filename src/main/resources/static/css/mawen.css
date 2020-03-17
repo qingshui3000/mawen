@@ -100,3 +100,7 @@ body{
     display: none;
     margin-top: 10px;
 }
+
+.login-input{
+    margin-bottom:10px;
+}

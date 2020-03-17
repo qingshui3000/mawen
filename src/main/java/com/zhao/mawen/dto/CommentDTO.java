@@ -15,7 +15,7 @@ public class CommentDTO {
 
     private Integer type;
 
-    private Integer commentor;
+    private Long commentor;
 
     private Long gmtCreate;
 
@@ -28,4 +28,6 @@ public class CommentDTO {
     private String content;
 
     private User user;
+
+    private boolean isLiked;
 }

@@ -19,13 +19,14 @@ public class IndexController {
     @GetMapping("/")
     public String hello(
             Model model,
-            @RequestParam(value = "search",defaultValue = "")String search,
-            @RequestParam(value = "start",defaultValue = "1") Integer start,
-            @RequestParam(value = "size",defaultValue = "10") Integer size) {
-        PageDTO pagination = questionService.list(start,size);
+            @RequestParam(name = "search",required = false)String search,
+            @RequestParam(name = "start",defaultValue = "1") Integer start,
+            @RequestParam(name = "size",defaultValue = "10") Integer size) {
+        PageDTO pagination = questionService.list(search,start,size);
         List<QuestionDTO> hotQuestions = questionService.selectHot();
         model.addAttribute("pagination",pagination);
         model.addAttribute("hotQuestions",hotQuestions);
         return "index";
     }
+
 }

@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/mawen.css">
+    <script src="/js/jquery.min.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/mawen.js" type="application/javascript"></script>
+</head>
 <body>
 <div th:fragment="nav">
     <nav class="navbar navbar-default">
@@ -16,9 +25,9 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-left">
+                <form class="navbar-form navbar-left" action="/" method="get">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索话题">
+                        <input type="text" name="search" class="form-control" placeholder="搜索话题">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
@@ -36,8 +45,42 @@
                         </ul>
                     </li>
                     <li th:if="${session.user == null}">
-<!--                        <a href="https://github.com/login/oauth/authorize?client_id=353ff89757379c74fb8d&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a>-->
-                        <a href="https://github.com/login/oauth/authorize?client_id=353ff89757379c74fb8d&redirect_uri=http://www.zhao6582.store/callback&scope=user&state=1">登录</a>
+                        <!--                        <a href="https://github.com/login/oauth/authorize?client_id=353ff89757379c74fb8d&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a>-->
+                        <!--                        <a href="https://github.com/login/oauth/authorize?client_id=353ff89757379c74fb8d&redirect_uri=http://www.zhao6582.store/callback&scope=user&state=1">登录</a>-->
+                        <!--                        <a href="https://github.com/login/oauth/authorize?client_id=5ce96f9f98168e22ff54&redirect_uri=http://localhost:8887/callback&scope=user&state=1">登录</a>-->
+                        <a data-toggle="modal" data-target="#myModal">登录/注册</a>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#menu1">登录</a></li>
+                                            <li><a data-toggle="tab" href="#menu2">注册</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="tab-content">
+                                            <div id="menu1" class="tab-pane fade in active">
+                                                <input id="account_l" class="form-control login-input" type="text" placeholder="账户">
+                                                <input id="password_l" class="form-control login-input" type="password" placeholder="密码">
+                                                <button type="button" class="btn btn-success" onclick="login(this);">登录</button>
+                                            </div>
+                                            <div id="menu2" class="tab-pane fade">
+                                                <input id="nick_name" class="form-control login-input" type="text" placeholder="昵称">
+                                                <input id="account_r" class="form-control login-input" type="text" placeholder="账户">
+                                                <input id="password_r0" class="form-control login-input" type="password" placeholder="密码">
+                                                <input id="password_r" class="form-control login-input" type="password" placeholder="确认密码">
+                                                <button type="button" class="btn btn-danger" onclick="reg(this)">注册</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

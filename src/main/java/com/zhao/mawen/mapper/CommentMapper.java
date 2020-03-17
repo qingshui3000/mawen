@@ -6,19 +6,12 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface CommentMapper {
-    int deleteByPrimaryKey(Long id);
 
     int insert(Comment record);
 
-    int insertSelective(Comment record);
+    Comment findById(Long id);
 
-    Comment selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(Comment record);
-
-    int updateByPrimaryKeyWithBLOBs(Comment record);
-
-    int updateByPrimaryKey(Comment record);
+    int update(Comment record);
 
     List<Comment> queryByQuestionId(@Param("questionId") Long id,@Param("type") Integer type);
 

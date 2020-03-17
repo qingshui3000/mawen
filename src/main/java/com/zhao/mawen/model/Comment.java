@@ -14,7 +14,7 @@ public class Comment {
 
     private Integer type;
 
-    private Integer commentor;
+    private Long commentor;
 
     private Long gmtCreate;
 

@@ -28,7 +28,7 @@ public class Question{
     /**
      * 创建者
      */
-    private Integer creator;
+    private Long creator;
 
     /**
      * 评论数

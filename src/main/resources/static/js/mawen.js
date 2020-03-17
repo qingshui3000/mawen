@@ -24,12 +24,6 @@ function comment2Target(targetId,type,content) {
         success:function (response) {
             if(response.code == 200){
                 window.location.reload();
-            }else if(response.code == 2000) {
-                var isAccepted = confirm(response.message);
-                if(isAccepted){
-                    window.open("https://github.com/login/oauth/authorize?client_id=353ff89757379c74fb8d&redirect_uri=http://localhost:8887/callback&scope=user&state=1");
-                    window.localStorage.setItem("closable",true);
-                }
             }else{
                 alert(response.message);
             }
@@ -116,3 +110,105 @@ function selectTags(e) {
         }
     }
 }
+
+function login(e) {
+    var account = $("#account_l").val();
+    var password = $("#password_l").val();
+    $.ajax({
+        type:"post",
+        url:"/login",
+        contentType:"application/json",
+        data:JSON.stringify({
+            "account":account,
+            "password":password
+        }),
+        success:function (response) {
+            if(response.code == 200){
+                window.location.reload();
+            }else{
+                alert(response.message);
+            }
+        },
+        dataType:"json"
+    });
+}
+
+function reg(e) {
+    var name = $("#nick_name").val();
+    var account = $("#account_r").val();
+    var password = $("#password_r").val();
+    if(password != $("#password_r0").val()){
+        alert("两次输入的密码不一致！");
+        return;
+    }
+    $.ajax({
+        type:"post",
+        url:"/reg",
+        contentType:"application/json",
+        data:JSON.stringify({
+            "name":name,
+            "account":account,
+            "password":password
+        }),
+        success:function(response){
+            if(response.code == 200){
+                alert(response.message);
+                window.location.reload();
+            }else{
+                alert(response.message);
+            }
+        },
+        dataType:"json"
+    })
+}
+
+function doLike_c(e) {
+    var icon = $("#icon-like");
+    var likedUserId=$("#comment_id").val();
+    var likedPostId=$("#user_id").val();
+    if(icon.hasClass('active')) {
+        console.log("unlike执行了");
+        icon.removeClass("active");
+        unLike(likedUserId,likedPostId,2);
+    }else{
+        console.log("like执行了");
+        icon.addClass("active");
+        like(likedUserId,likedPostId,2);
+    }
+}
+
+function like(likedUserId,likedPostId,type) {
+    var cnt = $("#icon-like").text();
+    cnt *= 1;
+    $("#icon-like").text(cnt+1);
+    $.ajax({
+        type:"post",
+        url:"/liked",
+        contentType:"application/json",
+        data:JSON.stringify({
+            "likedUserId":likedUserId,
+            "likedPostId":likedPostId,
+            "type":type
+        }),
+        dataType:"json"
+    })
+}
+
+function unLike(likedUserId,likedPostId,type) {
+    var cnt = $("#icon-like").text();
+    cnt *= 1;
+    cnt = cnt <= 1 ? 0 : cnt - 1;
+    $("#icon-like").text(cnt);
+    $.ajax({
+        type:"post",
+        url:"/unliked",
+        contentType:"application/json",
+        data:JSON.stringify({
+            "likedUserId":likedUserId,
+            "likedPostId":likedPostId,
+            "type":type
+        }),
+        dataType:"json"
+    })
+}
+

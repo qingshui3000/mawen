@@ -45,9 +45,13 @@ public class CommentController {
 
     @ResponseBody
     @RequestMapping(value = "/comment/{id}",method = RequestMethod.GET)
-    public ResultDTO comment(@PathVariable("id")String id, Model model){
-        List<CommentDTO> list = commentService.listByTargetId(Long.valueOf(id), CommentTypeEnum.COMMENT);
+    public ResultDTO comment(@PathVariable("id")String id, Model model,HttpServletRequest request){
+        User user = (User)request.getSession().getAttribute("user");
+        Long curUserId = 0l;
+        if(user != null){
+            curUserId = user.getId();
+        }
+        List<CommentDTO> list = commentService.listByTargetId(Long.valueOf(id), CommentTypeEnum.COMMENT, curUserId);
         return ResultDTO.okOf(list);
     }
-
 }

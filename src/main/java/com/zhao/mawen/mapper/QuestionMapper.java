@@ -10,9 +10,11 @@ public interface QuestionMapper {
 
     List<Question> list();
 
+    List<Question> list(@Param("keyword") String search);
+
     Integer count();
 
-    List<Question> listById(@Param("creator") Integer creator);
+    List<Question> listById(@Param("creator") Long creator);
 
     Question findById(Long id);
 

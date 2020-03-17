@@ -7,7 +7,11 @@
     </insert>
 
     <select id="list" resultType="com.zhao.mawen.model.Question">
-        select * from question order by gmt_modified desc
+        select * from question
+        <if test="keyword != null">
+            where title like #{keyword}
+        </if>
+        order by gmt_modified desc
     </select>
 
     <select id="listById" resultType="com.zhao.mawen.model.Question">
@@ -34,7 +38,7 @@
                 title = #{title,jdbcType=VARCHAR},
             </if>
             <if test="gmtModified != null">
-                gmt_modified = #{gmtModified,jdbcType=BIGINT},
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
             </if>
             <if test="commentCount != null">
                 comment_count = #{commentCount,jdbcType=INTEGER},

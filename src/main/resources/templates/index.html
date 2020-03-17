@@ -6,16 +6,11 @@
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="css/mawen.css">
     <script src="/js/jquery.min.js" type="application/javascript"></script>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/moment.js" type="application/javascript"></script>
+    <script src="/js/mawen.js" type="application/javascript"></script>
     <title>Mawen社区</title>
 </head>
-<script type="application/javascript">
-    var closable = window.localStorage.getItem("closable");
-    if(closable){
-        window.close();
-        window.localStorage.removeItem("closable");
-    }
-</script>
 <body>
 <div th:insert="~{nav :: nav}"></div>
 <div class="container-fluid main">

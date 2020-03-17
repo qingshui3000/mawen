@@ -8,7 +8,8 @@ public enum ExceptionErrorCode implements IExceptionErrorCode{
     TYPE_PARAM_NOT_FOUND(2005,"服务器炸了"),
     COMMENT_NOT_FOUND(2006,"回复的评论消失了"),
     CONTENT_IS_EMPTY(2007,"回复内容不能为空！"),
-    NO_AUTH(2008,"当前账号权限不足！");
+    NO_AUTH(2008,"当前账号权限不足！"),
+    LOGIN_INPUT_EMPTY(2009,"输入不能有空！");
 
     @Override
     public String getMessage(){

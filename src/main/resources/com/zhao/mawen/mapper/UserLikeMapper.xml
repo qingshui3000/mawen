@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhao.mawen.mapper.UserLikeMapper">
+    <resultMap id="BaseResultMap" type="com.zhao.mawen.model.UserLike">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="liked_user_id" jdbcType="BIGINT" property="likedUserId" />
+        <result column="liked_post_id" jdbcType="BIGINT" property="likedPostId" />
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, liked_user_id, liked_post_id, `type`, status, create_time, update_time
+    </sql>
+    <insert id="insert" parameterType="com.zhao.mawen.model.UserLike">
+        insert into user_like(liked_user_id,liked_post_id,`type`,status)
+        values(#{likedUserId},#{likedPostId},#{type},#{status})
+    </insert>
+
+    <insert id="insertAll" parameterType="java.util.List" useGeneratedKeys="false">
+        insert into user_like (liked_user_id,liked_post_id,`type`,status)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.likedUserId},
+            #{item.likedPostId},
+            #{item.type},
+            #{item.status}
+            )
+        </foreach>
+    </insert>
+    <select id="find" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_like
+        where liked_user_id=#{likedUserId} and
+        liked_post_id=#{likedPostId} and
+        `type`=#{type}
+    </select>
+
+    <update id="update" parameterType="com.zhao.mawen.model.UserLike">
+        update user_like
+        set status=#{status}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

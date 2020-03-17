@@ -1,5 +1,6 @@
 package com.zhao.mawen.dto;
 
+import com.zhao.mawen.model.Question;
 import com.zhao.mawen.model.User;
 import lombok.Data;
 
@@ -25,7 +26,7 @@ public class QuestionDTO {
     /**
      * 创建者
      */
-    private Integer creator;
+    private Long creator;
 
     /**
      * 评论数
@@ -53,4 +54,5 @@ public class QuestionDTO {
     private String description;
 
     private User user;
+
 }

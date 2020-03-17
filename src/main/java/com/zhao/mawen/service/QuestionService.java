@@ -13,6 +13,7 @@ import com.zhao.mawen.model.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +26,19 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
-    public PageDTO list(Integer start,Integer size) {
+    public PageDTO list(String search,Integer start,Integer size) {
         PageHelper.startPage(start,size);
-        List<Question> questions = questionMapper.list();
+        List<Question> questions;
+        if (StringUtils.isEmpty(search)) {
+            questions = questionMapper.list();
+        }else{
+            questions = questionMapper.list("%"+search+"%");
+        }
         PageDTO pageDTO = getPage(start,size,questions);
         return pageDTO;
     }
 
-    public PageDTO list(Integer start, Integer size, Integer id) {
+    public PageDTO list(Integer start, Integer size, Long id) {
         PageHelper.startPage(start,size);
         List<Question> questions = questionMapper.listById(id);
         PageDTO pageDTO = getPage(start,size,questions);
@@ -128,5 +134,13 @@ public class QuestionService {
             return questionDTO;
         }).collect(Collectors.toList());
         return hotQuestions;
+    }
+
+    public void update(QuestionDTO questionDTO) {
+        Question question = new Question();
+        BeanUtils.copyProperties(questionDTO,question);
+        User user = questionDTO.getUser();
+        userMapper.update(user);
+        questionMapper.update(question);
     }
 }

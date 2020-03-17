@@ -1,0 +1,1 @@
+alter table user add base64 varchar(255) not null comment '加密信息' after name;
