@@ -21,14 +21,14 @@ public class ProfileController {
     private QuestionService questionService;
     @Autowired
     private UserService userService;
-    @Value("${qcloud.cos.secret.id}")
-    public String secretId;
-    @Value("${qcloud.cos.secret.key}")
-    public String secretKey;
-    @Value("${qcloud.cos.bucket.name}")
-    public String bucketName;
-    @Value("${qcloud.cos.region}")
-    public String region;
+//    @Value("${qcloud.cos.secret.id}")
+//    public String secretId;
+//    @Value("${qcloud.cos.secret.key}")
+//    public String secretKey;
+//    @Value("${qcloud.cos.bucket.name}")
+//    public String bucketName;
+//    @Value("${qcloud.cos.region}")
+//    public String region;
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action")String action,
                           Model model,
