@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
-    @Value("${qcloud.cos.bucket.name}")
-    public String bucketName;
-    @Value("${qcloud.cos.region}")
-    public String region;
+//    @Value("${qcloud.cos.bucket.name}")
+//    public String bucketName;
+//    @Value("${qcloud.cos.region}")
+//    public String region;
     @Autowired
     private UserMapper userMapper;
     @Override
