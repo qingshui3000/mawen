@@ -1,15 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="nav::commonHeader(${question.title})">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="/css/mawen.css">
-    <script src="/js/jquery.min.js" type="application/javascript"></script>
-    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
-    <script src="/js/mawen.js" type="application/javascript"></script>
-    <script src="/js/moment.js" type="application/javascript"></script>
-    <title th:text="${question.title}"></title>
 </head>
 <body>
 <div th:insert="~{nav :: nav}"></div>
@@ -66,8 +58,10 @@
                         <span th:text="${comment.content}"></span>
                     </div>
                     <div class="menu panel">
-                        <span th:classappend="${comment.liked} ? active" class="glyphicon glyphicon-thumbs-up icon"
+                        <span th:if="${session.user != null}" th:classappend="${comment.liked} ? active" class="glyphicon glyphicon-thumbs-up icon"
                               th:text="${comment.likeCount}" onclick="doLike_c(this)" id="icon-like"></span>
+                        <span th:if="${session.user == null}" class="glyphicon glyphicon-thumbs-up disabled"
+                              th:text="${comment.likeCount}"></span>
                         <span class="icon" th:data-id="${comment.id}"
                                 onclick="collapseComments(this)">
                             <span class="glyphicon glyphicon-comment"></span>

@@ -1,78 +1,122 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="/css/mawen.css">
-    <script src="/js/jquery.min.js" type="application/javascript"></script>
-    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
-    <title th:text="${sectionName}"></title>
+<head th:replace="nav::commonHeader(${sectionName})">
 </head>
 <body>
 <div th:insert="~{nav :: nav}"></div>
 <div class="container-fluid main profile">
-    <div class="col-lg 9 col-md-9 col-sm-12">
-        <h2 th:text="${sectionName}"><span class="glyphicon glyphicon-list"></span></h2>
-        <div class="media" th:each="question : ${pagination.questions}">
-            <div class="media-left">
-                <a href="#">
-                    <img class="media-object img-rounded" th:src="${question.user.userfaceUrl}">
-                </a>
-            </div>
-            <div class="media-body" >
-                <a th:href="@{'/question/'+${question.id}}">
-                    <h4 class="media-heading" th:text="${question.title}"></h4>
-                </a>
-                <span class="desc-text"><span th:text="${question.commentCount}"></span>评论 •
-                    <span th:text="${question.viewCount}"></span> 次浏览 •
-                    <span th:text="${#dates.format(question.gmtModified,'yyyy-MM-dd HH:mm:ss')}"></span></span>
-                <a th:if="${session.user != null && session.user.id == question.user.id}" th:href="@{'/publish/'+${question.id}}" class="mawen-menu">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    编辑
-                </a>
-            </div>
-        </div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li th:if="${pagination.page > 3}">
-                    <a href="/profile/questions?start=1" aria-label="Previous">
-                        <span aria-hidden="true">&lt;&lt;</span>
-                    </a>
-                </li>
-                <li th:if="${pagination.page != 1 && pagination.page <= pagination.total}">
-                    <a th:href="@{/profile/questions(start=${pagination.page - 1})}" aria-label="Previous">
-                        <span aria-hidden="true">&lt;</span>
-                    </a>
-                </li>
-                <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page} ? 'active' : ''">
-                    <a th:text="${page}" th:href="@{/profile/questions(start=${page})}"
-                    ></a>
-                </li>
-                <li th:if="${pagination.page < pagination.total}">
-                    <a th:href="@{/profile/questions(start=${pagination.page + 1})}" aria-label="Previous">
-                        <span aria-hidden="true">&gt;</span>
-                    </a>
-                </li>
-                <li th:if="${pagination.page < pagination.total}">
-                    <a th:href="@{/profile/questions(start=${pagination.total})}" aria-label="Previous">
-                        <span aria-hidden="true">&gt;&gt;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
     <div class="col-lg-3 col-md-3 col-sm-12">
         <div class="list-group section">
-            <a href="/profile/questions" th:class="${section == 'questions'} ? 'active list-group-item' : 'list-group-item'">
+            <a href="#questions" class="list-group-item" aria-controls="questions" role="tab" data-toggle="tab">
                 我的提问
             </a>
-            <a href="/profile/replies" th:class="${section == 'replies'} ? 'active list-group-item' : 'list-group-item'">
+            <a href="#replies" class="list-group-item" aria-controls="replies" role="tab" data-toggle="tab">
                 最新回复
+                <span class="badge">14</span>
+            </a>
+            <a href="#selfish" class="list-group-item" aria-controls="selfish" role="tab" data-toggle="tab">
+                我的信息
                 <span class="badge">14</span>
             </a>
         </div>
     </div>
+    <div class="col-lg 9 col-md-9 col-sm-12 tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="questions">
+            <h2>我的提问</h2>
+            <div class="media" th:each="question : ${pagination.questions}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-rounded" th:src="${question.user.userfaceUrl}">
+                    </a>
+                </div>
+                <div class="media-body" >
+                    <a th:href="@{'/question/'+${question.id}}">
+                        <h4 class="media-heading" th:text="${question.title}"></h4>
+                    </a>
+                    <span class="desc-text"><span th:text="${question.commentCount}"></span>评论 •
+                    <span th:text="${question.viewCount}"></span> 次浏览 •
+                    <span th:text="${#dates.format(question.gmtModified,'yyyy-MM-dd HH:mm:ss')}"></span></span>
+                    <a th:if="${session.user != null && session.user.id == question.user.id}" th:href="@{'/publish/'+${question.id}}" class="mawen-menu">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        编辑
+                    </a>
+                </div>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li th:if="${pagination.page > 3}">
+                        <a href="/profile/questions?start=1" aria-label="Previous">
+                            <span aria-hidden="true">&lt;&lt;</span>
+                        </a>
+                    </li>
+                    <li th:if="${pagination.page != 1 && pagination.page <= pagination.total}">
+                        <a th:href="@{/profile/questions(start=${pagination.page - 1})}" aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+                    <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page} ? 'active' : ''">
+                        <a th:text="${page}" th:href="@{/profile/questions(start=${page})}"
+                        ></a>
+                    </li>
+                    <li th:if="${pagination.page < pagination.total}">
+                        <a th:href="@{/profile/questions(start=${pagination.page + 1})}" aria-label="Previous">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                    <li th:if="${pagination.page < pagination.total}">
+                        <a th:href="@{/profile/questions(start=${pagination.total})}" aria-label="Previous">
+                            <span aria-hidden="true">&gt;&gt;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="replies">2</div>
+        <div role="tabpanel" class="tab-pane fade" id="selfish">
+            <h2>个人信息</h2>
+            <a data-toggle="modal" data-target="#updateself" class="mawen-menu">
+                <span class="glyphicon glyphicon-pencil"></span>
+                编辑
+            </a>
+<!--            <div class="modal fade" id="updateself" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+<!--                <div class="modal-dialog" role="document">-->
+<!--                    <div class="modal-content">-->
+<!--                        <div class="modal-header">-->
+<!--                            <h3>修改个人信息</h3>-->
+<!--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+<!--                        </div>-->
+<!--                        <div class="modal-body">-->
+<!--                            <form id="updateForm" action="" method="post" enctype="multipart/form-data">-->
+<!--                                <div class="form-group">-->
+<!--                                    <input type="text" class="form-control" placeholder="请输入新的昵称"/>-->
+<!--                                </div>-->
+<!--                                <div class="form-group">-->
+<!--                                    <label>上传新的头像</label>-->
+<!--                                    <input type="file" id="file-selector">-->
+<!--                                    <span>请选择1M以内图片</span>-->
+<!--                                    <input type="submit" class="btn btn-primary" onclick="uploadPic()">-->
+<!--                                </div>-->
+
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                        <div class="modal-footer">-->
+<!--                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="form-group col-lg 2 col-md-2 col-sm-12">
+                <img class="img-responsive img-rounded" th:src="${session.user.userfaceUrl}"/>
+            </div>
+            <div class="form-group col-lg 2 col-md-2 col-sm-12">
+                <p th:text="${'昵称：'+session.user.name}"></p>
+                <p th:text="${'收到的赞：'+session.user.likeCount}"></p>
+            </div>
+
+        </div>
+    </div>
 </div>
+<!--<input type="hidden" id="bucket" th:text="${session.bucket}">-->
+<!--<input type="hidden" id="region" th:text="${session.region}">-->
 </body>
 </html>

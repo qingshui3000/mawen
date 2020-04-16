@@ -15,6 +15,87 @@
 [flyway]()  
 [PageHelper 物理分页](https://github.com/pagehelper/Mybatis-PageHelper) 
 
+```
+│  MawenApplication.java
+│
+├─advice
+│      MawenExceptionHadnler.java
+│
+├─cache
+│      TagCache.java
+│
+├─config
+│      QuartzConfig.java
+│      RedisConfig.java
+│
+├─controller
+│      CommentController.java
+│      IndexController.java
+│      LikedController.java
+│      LoginController.java
+│      MawenErrorController.java
+│      ProfileController.java
+│      PublishController.java
+│      QuestionController.java
+│
+├─dto
+│      AccessTokenDTO.java
+│      CommentCreateDTO.java
+│      CommentDTO.java
+│      LikedCountDTO.java
+│      PageDTO.java
+│      QuestionDTO.java
+│      ResultDTO.java
+│      TagDTO.java
+│      UserDTO.java
+│
+├─enums
+│      CommentTypeEnum.java
+│      LikedStatusEnum.java
+│      LikedTargetTypeEnum.java
+│
+├─exception
+│      ExceptionErrorCode.java
+│      IExceptionErrorCode.java
+│      MawenException.java
+│
+├─interceptor
+│      SessionInterceptor.java
+│      WebConfig.java
+│
+├─mapper
+│      CommentMapper.java
+│      QuestionMapper.java
+│      UserLikeMapper.java
+│      UserMapper.java
+│
+├─model
+│      Comment.java
+│      Question.java
+│      User.java
+│      UserLike.java
+│
+├─provider
+│      CosProvider.java
+│      EncryptionProvider.java
+│      RedisKeyUtils.java
+│
+├─service
+│  │  CommentService.java
+│  │  LikedService.java
+│  │  QuestionService.java
+│  │  RedisService.java
+│  │  UserService.java
+│  │
+│  └─impl
+│          LikedServiceImpl.java
+│          RedisServiceImpl.java
+│
+└─Task
+        LikeTask.java
+
+```
+
 ###脚本
 ```sql
 drop database if exists `mawen`;
