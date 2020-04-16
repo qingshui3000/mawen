@@ -30,8 +30,8 @@ public class SessionInterceptor implements HandlerInterceptor {
                     User user = userMapper.findByToken(token);
                     if (user != null){
                         request.getSession().setAttribute("user",user);
-                        request.getSession().setAttribute("bucket", bucketName);
-                        request.getSession().setAttribute("region", region);
+//                        request.getSession().setAttribute("bucket", bucketName);
+//                        request.getSession().setAttribute("region", region);
                     }
                     break;
                 }
