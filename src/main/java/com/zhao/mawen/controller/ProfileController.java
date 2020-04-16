@@ -63,7 +63,7 @@ public class ProfileController {
     @PostMapping("/putface")
     @ResponseBody
     public ResultDTO getTmpKey(@RequestBody String file){
-        System.out.println(file);
+//        System.out.println(file);
         return  ResultDTO.okOf();
     }
 }
