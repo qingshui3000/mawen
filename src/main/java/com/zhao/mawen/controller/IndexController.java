@@ -1,7 +1,7 @@
 package com.zhao.mawen.controller;
 
-import com.zhao.mawen.dto.PageDTO;
-import com.zhao.mawen.dto.QuestionDTO;
+import com.zhao.mawen.controller.dto.PageDTO;
+import com.zhao.mawen.controller.dto.QuestionDTO;
 import com.zhao.mawen.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

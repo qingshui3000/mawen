@@ -30,26 +30,7 @@ CREATE TABLE `comment` (
   `content` text NOT NULL,
   `comment_count` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- ----------------------------
--- Table structure for flyway_schema_history
--- ----------------------------
-DROP TABLE IF EXISTS `flyway_schema_history`;
-CREATE TABLE `flyway_schema_history` (
-  `installed_rank` int(11) NOT NULL,
-  `version` varchar(50) DEFAULT NULL,
-  `description` varchar(200) NOT NULL,
-  `type` varchar(20) NOT NULL,
-  `script` varchar(1000) NOT NULL,
-  `checksum` int(11) DEFAULT NULL,
-  `installed_by` varchar(100) NOT NULL,
-  `installed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `execution_time` int(11) NOT NULL,
-  `success` tinyint(1) NOT NULL,
-  PRIMARY KEY (`installed_rank`),
-  KEY `flyway_schema_history_s_idx` (`success`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB COMMENT='评论实体表';;
 
 -- ----------------------------
 -- Table structure for question
@@ -67,7 +48,7 @@ CREATE TABLE `question` (
   `like_count` int(11) DEFAULT NULL COMMENT '点赞数',
   `tag` varchar(255) DEFAULT NULL COMMENT '标签',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB COMMENT='问题实体表';;
 
 -- ----------------------------
 -- Table structure for user
@@ -75,7 +56,7 @@ CREATE TABLE `question` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '姓名',
+  `name` varchar(100) DEFAULT NULL COMMENT '姓名',
   `account` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
   `token` char(36) NOT NULL,
@@ -85,7 +66,7 @@ CREATE TABLE `user` (
   `userface_url` varchar(100) DEFAULT NULL,
   `like_count` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB COMMENT='用户实体表';
 
 -- ----------------------------
 -- Table structure for user_like
@@ -102,4 +83,4 @@ CREATE TABLE `user_like` (
   PRIMARY KEY (`id`),
   KEY `liked_user_id` (`liked_user_id`),
   KEY `liked_post_id` (`liked_post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户点赞记录表';
+) ENGINE=InnoDB COMMENT='用户点赞记录表';

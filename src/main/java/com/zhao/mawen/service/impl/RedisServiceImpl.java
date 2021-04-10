@@ -1,9 +1,9 @@
 package com.zhao.mawen.service.impl;
 
-import com.zhao.mawen.dto.LikedCountDTO;
-import com.zhao.mawen.enums.LikedStatusEnum;
-import com.zhao.mawen.model.UserLike;
-import com.zhao.mawen.provider.RedisKeyUtils;
+import com.zhao.mawen.controller.dto.LikedCountDTO;
+import com.zhao.mawen.common.enums.LikedStatusEnum;
+import com.zhao.mawen.dao.model.UserLike;
+import com.zhao.mawen.common.provider.RedisKeyUtils;
 import com.zhao.mawen.service.LikedService;
 import com.zhao.mawen.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,31 +1,27 @@
 insert into question(title,description,gmt_create,gmt_modified,
 	creator,comment_count,view_count,like_count,tag)
-values("JDK和JRE的区别是什么？","JDK和JRE的区别是什么？",1584433263922,1584433263922,9,0,0,0,"java");
+values("什么是值传递和引用传递？","Java是哪种传递呢？",1587733263922,1588033263922,1,0,0,0,"java");
 
 insert into question(title,description,gmt_create,gmt_modified,
 	creator,comment_count,view_count,like_count,tag)
-values("”static”关键字是什么意思？","如题，Java中是否可以覆盖(override)一个private或者是static的方法？",1582252922589,1582252922589,10,0,0,0,"java");
+values("HTTP响应的结构是怎么样的？","如题，HTTP响应的结构是怎么样的？",1582252922589,1582252922589,10,0,0,0,"java");
 
 insert into question(title,description,gmt_create,gmt_modified,
 	creator,comment_count,view_count,like_count,tag)
-values("是否可以在static环境中访问非static变量？","如题，是否可以在static环境中访问非static变量？",1584433263922,1584433263922,11,0,0,0,"java");
+values("怎样启动MySQL数据库服务器？","如题，怎样启动MySQL数据库服务器？",1584433263922,1584433263922,11,0,0,0,"mysql");
 
 insert into question(title,description,gmt_create,gmt_modified,
 	creator,comment_count,view_count,like_count,tag)
-values("Java支持的数据类型有哪些？","如题，什么又是自动拆装箱？",1583633263922,1586633263922,12,0,0,0,"java");
+values("MySQL 索引一般使用什么数据结构？","如题，MySQL 索引一般使用什么数据结构？",1583633263922,1586633263922,12,0,0,0,"mysql");
 
 insert into question(title,description,gmt_create,gmt_modified,
 	creator,comment_count,view_count,like_count,tag)
-values("Java多态问题","如题，Java中的方法覆盖(Overriding)和方法重载(Overload)是什么意思？",1582452922589,1582452922589,13,0,0,0,"java");
+values("C语言中char类型占据字节数为?","如题，C语言中char类型占据字节数为?int呢",1582452922589,1582452922589,13,0,0,0,"c");
 
 insert into question(title,description,gmt_create,gmt_modified,
 	creator,comment_count,view_count,like_count,tag)
-values("Java中，什么是构造方法？","什么是构造方法重载？什么是复制构造方法？",1585533263922,1586533263922,14,0,0,0,"java");
+values("c语言的malloc和c++语言的new的主要区别？","c语言的malloc和c++语言的new的主要区别？",1585533263922,1586533263922,14,0,0,0,"c");
 
 insert into question(title,description,gmt_create,gmt_modified,
 	creator,comment_count,view_count,like_count,tag)
-values("Java支持多继承么？","如题，Java支持多继承么？",1581033263922,1581033263922,15,0,0,0,"java");
-
-insert into question(title,description,gmt_create,gmt_modified,
-	creator,comment_count,view_count,like_count,tag)
-values("接口和抽象类的区别是什么？","如题，接口和抽象类的区别是什么？",1584433263922,1584433263922,16,0,0,0,"java");
+values("Spring框架的优点？","如题，请简单谈一下Spring框架的优点都有哪些？",1581033263922,1581033263922,15,0,0,0,"java");

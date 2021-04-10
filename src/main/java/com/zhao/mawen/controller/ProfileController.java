@@ -1,14 +1,11 @@
 package com.zhao.mawen.controller;
 
-import com.zhao.mawen.dto.PageDTO;
-import com.zhao.mawen.dto.ResultDTO;
-import com.zhao.mawen.model.User;
-import com.zhao.mawen.provider.CosProvider;
+import com.zhao.mawen.controller.dto.PageDTO;
+import com.zhao.mawen.controller.dto.ResultDTO;
+import com.zhao.mawen.dao.model.User;
 import com.zhao.mawen.service.QuestionService;
 import com.zhao.mawen.service.UserService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

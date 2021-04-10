@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@MapperScan("com.zhao.mawen.mapper")
+@MapperScan("com.zhao.mawen.dao.mapper")
 @EnableCaching
 public class MawenApplication extends SpringBootServletInitializer {
     @Override

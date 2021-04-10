@@ -1,8 +1,7 @@
 package com.zhao.mawen.controller;
 
-import com.zhao.mawen.dto.ResultDTO;
-import com.zhao.mawen.model.UserLike;
-import com.zhao.mawen.service.LikedService;
+import com.zhao.mawen.controller.dto.ResultDTO;
+import com.zhao.mawen.dao.model.UserLike;
 import com.zhao.mawen.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

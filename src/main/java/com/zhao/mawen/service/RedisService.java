@@ -1,7 +1,7 @@
 package com.zhao.mawen.service;
 
-import com.zhao.mawen.dto.LikedCountDTO;
-import com.zhao.mawen.model.UserLike;
+import com.zhao.mawen.controller.dto.LikedCountDTO;
+import com.zhao.mawen.dao.model.UserLike;
 
 import java.util.List;
 

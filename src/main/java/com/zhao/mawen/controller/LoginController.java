@@ -1,16 +1,16 @@
 package com.zhao.mawen.controller;
 
-import com.zhao.mawen.dto.ResultDTO;
-import com.zhao.mawen.dto.UserDTO;
-import com.zhao.mawen.exception.ExceptionErrorCode;
-import com.zhao.mawen.model.User;
+import com.zhao.mawen.common.enums.ExceptionErrorCode;
+import com.zhao.mawen.controller.dto.ResultDTO;
+import com.zhao.mawen.dao.model.User;
 import com.zhao.mawen.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

@@ -1,9 +1,9 @@
 package com.zhao.mawen.controller;
 
-import com.zhao.mawen.dto.CommentDTO;
-import com.zhao.mawen.dto.QuestionDTO;
-import com.zhao.mawen.enums.CommentTypeEnum;
-import com.zhao.mawen.model.User;
+import com.zhao.mawen.common.enums.CommentTypeEnum;
+import com.zhao.mawen.controller.dto.CommentDTO;
+import com.zhao.mawen.controller.dto.QuestionDTO;
+import com.zhao.mawen.dao.model.User;
 import com.zhao.mawen.service.CommentService;
 import com.zhao.mawen.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,4 @@ public class QuestionController {
         System.out.println(relatedQuestions.toString());
         return "detail";
     }
-
-
-
 }

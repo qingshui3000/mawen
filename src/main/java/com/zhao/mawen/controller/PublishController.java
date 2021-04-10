@@ -1,11 +1,11 @@
 package com.zhao.mawen.controller;
 
-import com.zhao.mawen.cache.TagCache;
-import com.zhao.mawen.dto.QuestionDTO;
-import com.zhao.mawen.exception.ExceptionErrorCode;
-import com.zhao.mawen.exception.MawenException;
-import com.zhao.mawen.model.Question;
-import com.zhao.mawen.model.User;
+import com.zhao.mawen.common.enums.ExceptionErrorCode;
+import com.zhao.mawen.controller.dto.MawenException;
+import com.zhao.mawen.controller.dto.QuestionDTO;
+import com.zhao.mawen.controller.dto.TagCache;
+import com.zhao.mawen.dao.model.Question;
+import com.zhao.mawen.dao.model.User;
 import com.zhao.mawen.service.QuestionService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

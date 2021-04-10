@@ -1,12 +1,12 @@
 package com.zhao.mawen.service.impl;
 
-import com.zhao.mawen.dto.CommentDTO;
-import com.zhao.mawen.dto.LikedCountDTO;
-import com.zhao.mawen.dto.QuestionDTO;
-import com.zhao.mawen.enums.LikedTargetTypeEnum;
-import com.zhao.mawen.mapper.UserLikeMapper;
-import com.zhao.mawen.model.User;
-import com.zhao.mawen.model.UserLike;
+import com.zhao.mawen.common.enums.LikedTargetTypeEnum;
+import com.zhao.mawen.controller.dto.CommentDTO;
+import com.zhao.mawen.controller.dto.LikedCountDTO;
+import com.zhao.mawen.controller.dto.QuestionDTO;
+import com.zhao.mawen.dao.mapper.UserLikeMapper;
+import com.zhao.mawen.dao.model.User;
+import com.zhao.mawen.dao.model.UserLike;
 import com.zhao.mawen.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.zhao.mawen.service;
 
-import com.zhao.mawen.model.UserLike;
+import com.zhao.mawen.dao.model.UserLike;
 
 import java.util.List;
 

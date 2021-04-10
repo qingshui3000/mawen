@@ -122,23 +122,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>6.1.0</version>
-                <configuration>
-                    <url>jdbc:mysql://localhost:3306/mawen?serverTimezone=Hongkong</url>
-                    <user>root</user>
-                    <password>Zhao..6582</password>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.15</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
         </plugins>
     </build>
 

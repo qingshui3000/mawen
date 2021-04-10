@@ -1,12 +1,12 @@
 package com.zhao.mawen.controller;
 
-import com.zhao.mawen.dto.CommentCreateDTO;
-import com.zhao.mawen.dto.CommentDTO;
-import com.zhao.mawen.dto.ResultDTO;
-import com.zhao.mawen.enums.CommentTypeEnum;
-import com.zhao.mawen.exception.ExceptionErrorCode;
-import com.zhao.mawen.model.Comment;
-import com.zhao.mawen.model.User;
+import com.zhao.mawen.common.enums.CommentTypeEnum;
+import com.zhao.mawen.common.enums.ExceptionErrorCode;
+import com.zhao.mawen.controller.dto.CommentCreateDTO;
+import com.zhao.mawen.controller.dto.CommentDTO;
+import com.zhao.mawen.controller.dto.ResultDTO;
+import com.zhao.mawen.dao.model.Comment;
+import com.zhao.mawen.dao.model.User;
 import com.zhao.mawen.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
